@@ -1,0 +1,16 @@
+.registration__btn {
+  padding: 14px 0 14px 0;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #000000;
+  margin: 0 0 15px 0;
+}
+
+.registration__btn:hover {
+  background: #ffffff;
+  opacity: 0.85;
+}

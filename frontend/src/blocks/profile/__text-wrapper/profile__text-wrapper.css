@@ -1,0 +1,16 @@
+.profile__text-wrapper {
+  display: grid;
+  justify-self: start;
+  grid-template-areas:
+    "profile__title profile__edit-btn"
+    "profile__sub-title profile__sub-title";
+  margin-left: 30px;
+}
+
+@media all and (max-width: 900px) {
+  .profile__text-wrapper {
+    justify-self: center;
+    margin-left: 0;
+  }
+}
+

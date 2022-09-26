@@ -1,0 +1,14 @@
+.gallery__trash {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+.gallery__trash:hover {
+  opacity: 0.6;
+}
+
+.gallery__trash_hidden {
+  visibility: hidden;
+  display: block;
+}

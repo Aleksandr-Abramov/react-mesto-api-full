@@ -1,0 +1,9 @@
+.popup__container_width {
+  width: 430px;
+}
+
+@media all and (max-width: 600px) {
+  .popup__container_width {
+    width: 282px;
+  }
+}

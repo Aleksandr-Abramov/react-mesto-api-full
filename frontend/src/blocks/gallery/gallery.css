@@ -1,0 +1,19 @@
+.gallery {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(min-content, max-content));
+  gap: 20px 17px;
+  justify-content: center;
+}
+
+@media all and (max-width: 900px) {
+  .gallery {
+    grid-template-columns: repeat(2, minmax(min-content, max-content));
+  }
+}
+
+@media all and (max-width: 600px) {
+  .gallery {
+    grid-template-columns: repeat(1, minmax(min-content, max-content));
+  }
+}

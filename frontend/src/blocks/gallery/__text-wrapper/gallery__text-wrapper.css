@@ -1,0 +1,8 @@
+.gallery__text-wrapper {
+  max-width: 246px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+}

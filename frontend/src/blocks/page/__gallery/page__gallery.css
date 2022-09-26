@@ -1,0 +1,9 @@
+.page__gallery {
+  margin-bottom: 66px;
+}
+
+@media all and (max-width: 320px) {
+  .page__gallery {
+    margin-bottom: 48px;
+  }
+}

@@ -1,0 +1,23 @@
+.popup__close {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  top: -36px;
+  right: -36px;
+  background: url(../../../images/svg/close-Icon1280.svg) center center
+    no-repeat;
+  border: none;
+  cursor: pointer;
+}
+
+.popup__cloce:hover {
+  opacity: 0.6;
+}
+
+@media all and (max-width: 600px) {
+  .popup__cloce {
+    right: -5px;
+    background: url(../../../images/svg/close-icon320.svg) center center
+      no-repeat;
+  }
+}

@@ -125,7 +125,7 @@ class Api {
   }
   //регистрация токена в системе
   registerUserToken({ email, password }) {
-    return fetch(`${this._userTokenUrl}/signup`, {
+    return fetch(`${this._userTokenUrl}/sign-up`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -138,7 +138,8 @@ class Api {
   }
   //вход в систему
   autorizationUserToken({ email, password }) {
-    return fetch(`${this._userTokenUrl}/signin`, {
+    return fetch(`${this._userTokenUrl}/sign-in`, {
+      credentials: 'include',
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -150,12 +151,24 @@ class Api {
     }).then((res) => this.thenFunction(res));
   }
   //запросить токен
-  checkToken(token) {
+  checkToken() {
     return fetch(`${this._userTokenUrl}/users/me`, {
+      credentials: 'include',
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        // Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => this.thenFunction(res));
+  }
+
+  //удалить куку
+  deleteCookie() {
+    return fetch(`${this._userTokenUrl}/exit`, {
+      // credentials: 'include',
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
       },
     }).then((res) => this.thenFunction(res));
   }

@@ -33,7 +33,7 @@ routerUsers.patch("/users/me", auth, celebrate({
   }),
 }), changeUser);
 
-routerUsers.post("/signup", celebrate({
+routerUsers.post("/sign-up", celebrate({
   body: Joi.object().keys({
     name: Joi.string().max(30).min(2),
     about: Joi.string().max(30).min(2),
@@ -48,7 +48,7 @@ routerUsers.post("/signup", celebrate({
     password: Joi.string().required(),
   }),
 }), createUser);
-routerUsers.post("/signin", celebrate({
+routerUsers.post("/sign-in", celebrate({
   body: Joi.object().keys({
     email: Joi
       .string()
@@ -58,5 +58,11 @@ routerUsers.post("/signin", celebrate({
     password: Joi.string().required(),
   }),
 }), login);
+
+routerUsers.get("/exit", (req, res)=> {
+  res.clearCookie("token");
+  console.log("del");
+  res.send({ message: "удалили" });
+});
 
 module.exports = routerUsers;

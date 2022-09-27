@@ -39,28 +39,28 @@ function App() {
    * Получает информацию о пользователе при загрузки, заполняет карточки
    */
 
-  React.useEffect(() => {
-    if (!loggedIn) {
-      api
-        .getInfoUser()
-        .then((res) => {
-          console.log(res);
-          setCurrentUser(res);
-        })
-        .catch((err) =>
-          console.log(`Ошибка при получении данных пользователя:${err}`)
-        );
+  // React.useEffect(() => {
+    // if (!loggedIn) {
+    //   api
+    //     .getInfoUser()
+    //     .then((res) => {
+    //       console.log(res);
+    //       setCurrentUser(res);
+    //     })
+    //     .catch((err) =>
+    //       console.log(`Ошибка при получении данных пользователя:${err}`)
+    //     );
 
-      api
-        .getInitialCards()
-        .then((res) => {
-          setCards(res);
-        })
-        .catch((err) =>
-          console.log(`Ошибка при получении данных карточек:${err}`)
-        );
-    }
-  }, [loggedIn]);
+    //   api
+    //     .getInitialCards()
+    //     .then((res) => {
+    //       setCards(res);
+    //     })
+    //     .catch((err) =>
+    //       console.log(`Ошибка при получении данных карточек:${err}`)
+    //     );
+    // }
+  // }, [loggedIn]);
 
   /**
    * Ставит/удаляет лайк.
@@ -210,36 +210,58 @@ function App() {
    * очищает jwt, выходит из системы, редирект на вход.
    */
   function clearLocalStoreg() {
-    setLoggedIn(false);
-    setEmailTex("");
-    localStorage.removeItem("jwt");
+    // setLoggedIn(false);
+    // setEmailTex("");
+    api
+    .deleteCookie()
+    .then((res) => {
+      console.log(res);
+    })
+    // localStorage.removeItem("jwt");
     history.push("/sign-in");
   }
   /**
    * проверяет наличие токена у пользователя, редиректет на главную страницу.
    */
-  // function checkToken() {
-  //   const jwt = localStorage.getItem("jwt");
-  //   if (!jwt) {
-  //     return;
-  //   }
-  //   setLoggedIn(true);
-  //   history.push("/");
-  //   api
-  //     .checkToken(localStorage.getItem("jwt"))
-  //     .then((res) => {
-  //       setEmailTex(res.data.email);
-  //       setLoggedIn(true);
-  //     })
-  //     .catch((err) => {
-  //       console.log(`Ошибка при получении email:${err}`);
-  //     });
-  // }
+  function checkToken() {
+    // const jwt = localStorage.getItem("jwt");
+    // if (!jwt) {
+    //   return;
+    // }
+    // setLoggedIn(true);
+    // history.push("/");
+    api
+      // .checkToken(localStorage.getItem("jwt"))
+      .checkToken()
+      .then((res) => {
+        if(res) {
+          console.log(res);
+          setEmailTex(res.email);
+          setLoggedIn(true);
+          history.push("/");
+        }
+        
+      })
+      .catch((err) => {
+        console.log(`Ошибка при получении email:${err}`);
+      });
+  }
   /**
    * При открытии проверяет токен.
    */
   // React.useEffect(() => {
-  //   checkToken();
+    // checkToken();
+    // api
+    // .getInfoUser()
+    // .then((res) => {
+    //   if(res) {
+
+    //     console.log(res);
+    //   }
+    // })
+    // .catch((err) => {
+    //   console.log(err);
+    // })
   // }, [loggedIn]);
 
   return (

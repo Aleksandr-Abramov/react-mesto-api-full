@@ -133,6 +133,7 @@ function App() {
     api
       .createCard({ name, link })
       .then(function (card) {
+        // console.log(...card);
         setCards([card, ...cards]);
         closeAllPopups();
       })
@@ -172,11 +173,12 @@ function App() {
       );
   }
   /**
-   * регистрирует нового пользователя.
+   * регистрирует нового пользователя, редирект sign-in.
+   * показывает сообщение успех/неудача.
    */
-  function handleRegisterUserToken(userToken) {
+  function handleCreateUser(registerUserData) {
     api
-      .registerUserToken(userToken)
+      .registerUser(registerUserData)
       .then((res) => {
         setToltipMessage(true);
         handleToltipPopupOpen();
@@ -189,67 +191,94 @@ function App() {
       });
   }
   /**
-   * Получает доступ к сайту, сохранят jwt, редиректит на главную страницу.
+   * Проверка email/pass вход на сайт, редирект /.
+   * показывает сообщение успех/неудача.
    */
-  function handleGetUserToken(userToken) {
+  function hendleLogin(registerData) {
     api
-      .autorizationUserToken(userToken)
+      .autorizationUser(registerData)
       .then((res) => {
         setLoggedIn(true);
         history.push("/");
-        localStorage.setItem("jwt", res.token);
       })
       .catch((err) => {
         setLoggedIn(false);
         setToltipMessage(false);
         handleToltipPopupOpen();
-        console.log(`Ошибка при получении токена:${err}`);
+        console.log(`Не правильные email или password: ${err}`);
       });
   }
   /**
-   * очищает jwt, выходит из системы, редирект на вход.
+   * выход, удаление куки.
    */
-  function clearLocalStoreg() {
-    // setLoggedIn(false);
-    // setEmailTex("");
+  function exitSite() {
     api
     .deleteCookie()
     .then((res) => {
+      setLoggedIn(false);
+      setEmailTex("");
       console.log(res);
     })
-    // localStorage.removeItem("jwt");
     history.push("/sign-in");
   }
   /**
    * проверяет наличие токена у пользователя, редиректет на главную страницу.
    */
-  function checkToken() {
+  // function checkToken() {
     // const jwt = localStorage.getItem("jwt");
     // if (!jwt) {
     //   return;
     // }
     // setLoggedIn(true);
     // history.push("/");
-    api
+    // api
       // .checkToken(localStorage.getItem("jwt"))
-      .checkToken()
-      .then((res) => {
-        if(res) {
-          console.log(res);
-          setEmailTex(res.email);
-          setLoggedIn(true);
-          history.push("/");
-        }
+  //     .checkToken()
+  //     .then((res) => {
+  //       if(res) {
+  //         console.log(res);
+  //         setEmailTex(res.email);
+  //         setLoggedIn(true);
+  //         history.push("/");
+  //       }
         
-      })
-      .catch((err) => {
-        console.log(`Ошибка при получении email:${err}`);
-      });
-  }
+  //     })
+  //     .catch((err) => {
+  //       console.log(`Ошибка при получении email:${err}`);
+  //     });
+  // }
   /**
    * При открытии проверяет токен.
    */
-  // React.useEffect(() => {
+  React.useEffect(() => {
+    api
+      .getInfoUser()
+      .then((res) => {
+        if(res) {
+          setLoggedIn(true);
+          setEmailTex(res.email);
+          setCurrentUser(res);
+          history.push("/");
+        }
+      })
+      .catch((err) => {
+        if(err) {
+          console.log(err);
+        }   
+      });
+      api
+      .getInitialCards()
+      .then((res) => {
+        if(res) {
+          setCards(res);
+        }
+      })
+      .catch((err) => {
+        if(err) {
+          console.log(err);
+        }   
+      })
+
     // checkToken();
     // api
     // .getInfoUser()
@@ -262,7 +291,7 @@ function App() {
     // .catch((err) => {
     //   console.log(err);
     // })
-  // }, [loggedIn]);
+  }, [loggedIn]);
 
   return (
     <div className="page">
@@ -273,7 +302,7 @@ function App() {
               <Link
                 to="/sign-in"
                 className="registration__link-header"
-                onClick={clearLocalStoreg}
+                onClick={exitSite}
               >
                 Выйти
               </Link>
@@ -322,7 +351,7 @@ function App() {
               Войти
             </Link>
           </Header>
-          <Register createUserToken={handleRegisterUserToken} />
+          <Register createUser={handleCreateUser} />
         </Route>
         <Route exact path="/sign-in">
           <Header>
@@ -330,7 +359,7 @@ function App() {
               Регистрация
             </Link>
           </Header>
-          <Login getUserToken={handleGetUserToken} />
+          <Login getRegisterData={hendleLogin} />
         </Route>
       </Switch>
       <InfoTooltip

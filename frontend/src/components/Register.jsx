@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Input from "./Input";
 import { Link } from "react-router-dom";
 
-function Register({ createUserToken, openToltipPopup }) {
+function Register({ createUser, openToltipPopup }) {
   const [registerData, setRegisterData] = useState({ email: "", password: "" });
 
   function handleChange(e) {
@@ -13,7 +13,7 @@ function Register({ createUserToken, openToltipPopup }) {
   function handleSubmit(e) {
     e.preventDefault();
     const { ...data } = registerData;
-    createUserToken(data);
+    createUser(data);
   }
 
   return (

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Input from "./Input";
 
-function Login({ getUserToken }) {
+function Login({ getRegisterData }) {
   const [registerData, setRegisterData] = useState({ email: "", password: "" });
 
   function handleChange(e) {
@@ -12,7 +12,7 @@ function Login({ getUserToken }) {
   function handleSubmit(e) {
     e.preventDefault();
     const { ...data } = registerData;
-    getUserToken(data);
+    getRegisterData(data);
   }
 
   return (

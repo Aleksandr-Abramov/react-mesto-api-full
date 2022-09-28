@@ -15,7 +15,7 @@ function AddPlacePopup({ isOpen, closePopup, createCard }) {
     setLinkPlace(e.target.value);
   }
   function addDataCard(e) {
-    e.preventDefault();
+    e.preventDefault();;
     createCard({ name: namePlace, link: linkPlace });
   }
 

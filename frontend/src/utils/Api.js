@@ -10,6 +10,12 @@ class Api {
     if (res.ok) {
       return res.json();
     }
+
+    // if(res.status === 401) {
+      // console.log("ds");
+      // return Promise.reject(`Что-то пошло не так: ${res}`);
+      // return;
+    // }
     return Promise.reject(`Что-то пошло не так: ${res.status}`);
   }
 
@@ -18,6 +24,7 @@ class Api {
    */
   getInfoUser() {
     return fetch(`${this._url}/users/me`, {
+      credentials: 'include',
       method: "GET",
       headers: {
         // authorization: this._token,
@@ -30,6 +37,7 @@ class Api {
    */
   changeInfoUser({ name, about }) {
     return fetch(`${this._url}/users/me`, {
+      credentials: 'include',
       method: "PATCH",
       headers: {
         // authorization: this._token,
@@ -47,6 +55,7 @@ class Api {
    */
   changeAvatar(linkAvatar) {
     return fetch(`${this._url}/users/me/avatar`, {
+      credentials: 'include',
       method: "PATCH",
       headers: {
         // authorization: this._token,
@@ -62,6 +71,7 @@ class Api {
    */
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
+      credentials: 'include',
       method: "GET",
       headers: {
         // authorization: this._token,
@@ -71,7 +81,9 @@ class Api {
   }
   //создание карточек
   createCard({ name, link }) {
-    return fetch(`${this._url}/cards`, {
+    console.log(name, link);
+    return fetch("http://localhost:8000/cards/", {
+      credentials: 'include',
       method: "POST",
       headers: {
         // authorization: this._token,
@@ -86,6 +98,7 @@ class Api {
   //удаление карточек
   deleteCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
+      credentials: 'include',
       method: "DELETE",
       headers: {
         // authorization: this._token,
@@ -96,6 +109,7 @@ class Api {
   //поставить лайк
   setLike(cardId) {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
+      credentials: 'include',
       method: "PUT",
       headers: {
         // authorization: this._token,
@@ -106,6 +120,7 @@ class Api {
   //удалить лайк
   deleteLike(cardId) {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
+      credentials: 'include',
       method: "DELETE",
       headers: {
         // authorization: this._token,
@@ -115,7 +130,9 @@ class Api {
   }
   //поставить/удалить лайк
   changeLikeCardStatus(cardId, isLiked) {
+    console.log(cardId, isLiked);
     return fetch(`${this._url}/cards/${cardId}/likes`, {
+      credentials: 'include',
       method: isLiked ? "PUT" : "DELETE",
       headers: {
         // authorization: this._token,
@@ -124,8 +141,9 @@ class Api {
     }).then((res) => this.thenFunction(res));
   }
   //регистрация токена в системе
-  registerUserToken({ email, password }) {
+  registerUser({ email, password }) {
     return fetch(`${this._userTokenUrl}/sign-up`, {
+      credentials: 'include',
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -137,7 +155,7 @@ class Api {
     }).then((res) => this.thenFunction(res));
   }
   //вход в систему
-  autorizationUserToken({ email, password }) {
+  autorizationUser({ email, password }) {
     return fetch(`${this._userTokenUrl}/sign-in`, {
       credentials: 'include',
       method: "POST",
@@ -165,7 +183,7 @@ class Api {
   //удалить куку
   deleteCookie() {
     return fetch(`${this._userTokenUrl}/exit`, {
-      // credentials: 'include',
+      credentials: 'include',
       method: "GET",
       headers: {
         "Content-Type": "application/json",

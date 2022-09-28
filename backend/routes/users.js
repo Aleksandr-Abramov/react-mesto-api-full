@@ -59,10 +59,9 @@ routerUsers.post("/sign-in", celebrate({
   }),
 }), login);
 
-routerUsers.get("/exit", (req, res)=> {
+routerUsers.get("/exit", (req, res) => {
   res.clearCookie("token");
-  console.log("del");
-  res.send({ message: "удалили" });
+  res.send({ message: "Выход, удалили куки." });
 });
 
 module.exports = routerUsers;

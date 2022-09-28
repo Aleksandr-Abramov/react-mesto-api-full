@@ -15,13 +15,12 @@ routerCards.post("/cards", auth, celebrate({
   body: Joi.object().keys({
     name: Joi
       .string()
-      .alphanum()
       .max(30)
       .min(2)
       .required(),
     link: Joi
       .string()
-      .pattern(/https?:\/\/(w{3})?[a-z0-9-]+\.[a-z0-9\S]{2,}/)
+      // .pattern(/https?:\/\/(w{3})?[a-z0-9-]+\.[a-z0-9\S]{2,}/)
       .required(),
   }),
 }), createCard);

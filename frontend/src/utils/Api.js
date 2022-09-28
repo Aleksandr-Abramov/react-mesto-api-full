@@ -27,7 +27,6 @@ class Api {
       credentials: 'include',
       method: "GET",
       headers: {
-        // authorization: this._token,
         "Content-Type": "application/json",
       },
     }).then((res) => this.thenFunction(res));
@@ -40,7 +39,6 @@ class Api {
       credentials: 'include',
       method: "PATCH",
       headers: {
-        // authorization: this._token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -58,7 +56,6 @@ class Api {
       credentials: 'include',
       method: "PATCH",
       headers: {
-        // authorization: this._token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -74,7 +71,6 @@ class Api {
       credentials: 'include',
       method: "GET",
       headers: {
-        // authorization: this._token,
         "Content-Type": "application/json",
       },
     }).then((res) => this.thenFunction(res));
@@ -82,11 +78,10 @@ class Api {
   //создание карточек
   createCard({ name, link }) {
     console.log(name, link);
-    return fetch("http://localhost:8000/cards/", {
+    return fetch("http://localhost:8000/cards", {
       credentials: 'include',
       method: "POST",
       headers: {
-        // authorization: this._token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -101,41 +96,38 @@ class Api {
       credentials: 'include',
       method: "DELETE",
       headers: {
-        // authorization: this._token,
         "Content-Type": "application/json",
       },
     }).then((res) => this.thenFunction(res));
   }
   //поставить лайк
-  setLike(cardId) {
-    return fetch(`${this._url}/cards/${cardId}/likes`, {
-      credentials: 'include',
-      method: "PUT",
-      headers: {
-        // authorization: this._token,
-        "Content-Type": "application/json",
-      },
-    }).then((res) => this.thenFunction(res));
-  }
+  // setLike(cardId) {
+  //   return fetch(`${this._url}/cards/${cardId}/likes`, {
+  //     credentials: 'include',
+  //     method: "PUT",
+  //     headers: {
+  //       // authorization: this._token,
+  //       "Content-Type": "application/json",
+  //     },
+  //   }).then((res) => this.thenFunction(res));
+  // }
   //удалить лайк
-  deleteLike(cardId) {
-    return fetch(`${this._url}/cards/${cardId}/likes`, {
-      credentials: 'include',
-      method: "DELETE",
-      headers: {
-        // authorization: this._token,
-        "Content-Type": "application/json",
-      },
-    }).then((res) => this.thenFunction(res));
-  }
+  // deleteLike(cardId) {
+  //   return fetch(`${this._url}/cards/${cardId}/likes`, {
+  //     credentials: 'include',
+  //     method: "DELETE",
+  //     headers: {
+  //       // authorization: this._token,
+  //       "Content-Type": "application/json",
+  //     },
+  //   }).then((res) => this.thenFunction(res));
+  // }
   //поставить/удалить лайк
   changeLikeCardStatus(cardId, isLiked) {
-    console.log(cardId, isLiked);
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       credentials: 'include',
       method: isLiked ? "PUT" : "DELETE",
       headers: {
-        // authorization: this._token,
         "Content-Type": "application/json",
       },
     }).then((res) => this.thenFunction(res));
@@ -175,7 +167,6 @@ class Api {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        // Authorization: `Bearer ${token}`,
       },
     }).then((res) => this.thenFunction(res));
   }

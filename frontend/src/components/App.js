@@ -222,32 +222,6 @@ function App() {
     history.push("/sign-in");
   }
   /**
-   * проверяет наличие токена у пользователя, редиректет на главную страницу.
-   */
-  // function checkToken() {
-    // const jwt = localStorage.getItem("jwt");
-    // if (!jwt) {
-    //   return;
-    // }
-    // setLoggedIn(true);
-    // history.push("/");
-    // api
-      // .checkToken(localStorage.getItem("jwt"))
-  //     .checkToken()
-  //     .then((res) => {
-  //       if(res) {
-  //         console.log(res);
-  //         setEmailTex(res.email);
-  //         setLoggedIn(true);
-  //         history.push("/");
-  //       }
-        
-  //     })
-  //     .catch((err) => {
-  //       console.log(`Ошибка при получении email:${err}`);
-  //     });
-  // }
-  /**
    * При открытии проверяет токен.
    */
   React.useEffect(() => {
@@ -278,19 +252,6 @@ function App() {
           console.log(err);
         }   
       })
-
-    // checkToken();
-    // api
-    // .getInfoUser()
-    // .then((res) => {
-    //   if(res) {
-
-    //     console.log(res);
-    //   }
-    // })
-    // .catch((err) => {
-    //   console.log(err);
-    // })
   }, [loggedIn]);
 
   return (

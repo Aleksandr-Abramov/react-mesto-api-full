@@ -21,6 +21,7 @@ app.use(cors({
     "http://localhost:3000",
     "http://localhost:3000/sigin-up",
     "http://localhost:3000/users/me",
+    "http://localhost:3000/cards",
   ],
 }));
 app.use(express.json());

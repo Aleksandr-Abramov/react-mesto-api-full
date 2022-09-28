@@ -5,12 +5,11 @@ import trashIcon from "../images/svg/Trash.svg";
 
 function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   const userData = React.useContext(CurrentUserContext);
-
-  const isOwn = card.owner._id === userData._id;
+  const isOwn = card.owner === userData._id;
   const cardDeleteButtonClassName = `gallery__trash ${
     isOwn ? "" : "gallery__trash_hidden"
   }`;
-  const isLiked = card.likes.some((i) => i._id === userData._id);
+  const isLiked = card.likes.some((i) => i === userData._id);
   const cardLikeButtonClassName = `gallery__like ${
     isLiked ? "gallery__like_active" : ""
   }`;

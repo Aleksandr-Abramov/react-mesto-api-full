@@ -1,21 +1,13 @@
-import { apiToken, apiTokenUser } from "./utils";
+import { apiUrls} from "./utils";
 
 class Api {
-  constructor(tokenData, apiTokenUser) {
-    this._url = tokenData.url;
-    this._token = tokenData.token;
-    this._userTokenUrl = apiTokenUser.url;
+  constructor(apiUrls) {
+    this._url = apiUrls.url;
   }
   thenFunction(res) {
     if (res.ok) {
       return res.json();
     }
-
-    // if(res.status === 401) {
-      // console.log("ds");
-      // return Promise.reject(`Что-то пошло не так: ${res}`);
-      // return;
-    // }
     return Promise.reject(`Что-то пошло не так: ${res.status}`);
   }
 
@@ -77,8 +69,7 @@ class Api {
   }
   //создание карточек
   createCard({ name, link }) {
-    console.log(name, link);
-    return fetch("http://localhost:8000/cards", {
+    return fetch(`${this._url}/cards`, {
       credentials: 'include',
       method: "POST",
       headers: {
@@ -134,7 +125,7 @@ class Api {
   }
   //регистрация токена в системе
   registerUser({ email, password }) {
-    return fetch(`${this._userTokenUrl}/sign-up`, {
+    return fetch(`${this._url}/sign-up`, {
       credentials: 'include',
       method: "POST",
       headers: {
@@ -148,7 +139,7 @@ class Api {
   }
   //вход в систему
   autorizationUser({ email, password }) {
-    return fetch(`${this._userTokenUrl}/sign-in`, {
+    return fetch(`${this._url}/sign-in`, {
       credentials: 'include',
       method: "POST",
       headers: {
@@ -162,7 +153,7 @@ class Api {
   }
   //запросить токен
   checkToken() {
-    return fetch(`${this._userTokenUrl}/users/me`, {
+    return fetch(`${this._url}/users/me`, {
       credentials: 'include',
       method: "GET",
       headers: {
@@ -173,7 +164,7 @@ class Api {
 
   //удалить куку
   deleteCookie() {
-    return fetch(`${this._userTokenUrl}/exit`, {
+    return fetch(`${this._url}/exit`, {
       credentials: 'include',
       method: "GET",
       headers: {
@@ -183,5 +174,5 @@ class Api {
   }
 }
 
-const api = new Api(apiToken, apiTokenUser);
+const api = new Api(apiUrls);
 export default api;

@@ -39,28 +39,38 @@ function App() {
    * Получает информацию о пользователе при загрузки, заполняет карточки
    */
 
-  // React.useEffect(() => {
-    // if (!loggedIn) {
-    //   api
-    //     .getInfoUser()
-    //     .then((res) => {
-    //       console.log(res);
-    //       setCurrentUser(res);
-    //     })
-    //     .catch((err) =>
-    //       console.log(`Ошибка при получении данных пользователя:${err}`)
-    //     );
-
-    //   api
-    //     .getInitialCards()
-    //     .then((res) => {
-    //       setCards(res);
-    //     })
-    //     .catch((err) =>
-    //       console.log(`Ошибка при получении данных карточек:${err}`)
-    //     );
-    // }
-  // }, [loggedIn]);
+  React.useEffect(() => {
+    if (!loggedIn) {
+      return;
+    }
+    api
+      .getInfoUser()
+      .then((res) => {
+        if (res) {
+          setLoggedIn(true);
+          setEmailTex(res.email);
+          setCurrentUser(res);
+          history.push("/");
+        }
+      })
+      .catch((err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    api
+      .getInitialCards()
+      .then((res) => {
+        if (res) {
+          setCards(res);
+        }
+      })
+      .catch((err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+  }, [loggedIn]);
 
   /**
    * Ставит/удаляет лайк.
@@ -212,47 +222,12 @@ function App() {
    * выход, удаление куки.
    */
   function exitSite() {
-    api
-    .deleteCookie()
-    .then((res) => {
+    api.deleteCookie().then((res) => {
       setLoggedIn(false);
       setEmailTex("");
-      console.log(res);
-    })
+    });
     history.push("/sign-in");
   }
-  /**
-   * При открытии проверяет токен.
-   */
-  React.useEffect(() => {
-    api
-      .getInfoUser()
-      .then((res) => {
-        if(res) {
-          setLoggedIn(true);
-          setEmailTex(res.email);
-          setCurrentUser(res);
-          history.push("/");
-        }
-      })
-      .catch((err) => {
-        if(err) {
-          console.log(err);
-        }   
-      });
-      api
-      .getInitialCards()
-      .then((res) => {
-        if(res) {
-          setCards(res);
-        }
-      })
-      .catch((err) => {
-        if(err) {
-          console.log(err);
-        }   
-      })
-  }, [loggedIn]);
 
   return (
     <div className="page">

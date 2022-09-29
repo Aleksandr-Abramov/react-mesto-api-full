@@ -7,12 +7,9 @@
 //   url: "https://auth.nomoreparties.co"
 // }
 
-const apiToken = {
-  token: "ef1d00c5-6a5e-45bb-b32e-7026ce848f5d",
+const apiUrls = {
+
   url: "http://localhost:8000",
 };
 
-const apiTokenUser = {
-  url: "http://localhost:8000"
-}
-export { apiToken, apiTokenUser };
+export { apiUrls };

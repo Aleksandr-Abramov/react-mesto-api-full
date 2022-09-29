@@ -125,7 +125,7 @@ class Api {
   }
   //регистрация токена в системе
   registerUser({ email, password }) {
-    return fetch(`${this._url}/sign-up`, {
+    return fetch(`${this._url}/signup`, {
       credentials: 'include',
       method: "POST",
       headers: {
@@ -139,7 +139,7 @@ class Api {
   }
   //вход в систему
   autorizationUser({ email, password }) {
-    return fetch(`${this._url}/sign-in`, {
+    return fetch(`${this._url}/signin`, {
       credentials: 'include',
       method: "POST",
       headers: {

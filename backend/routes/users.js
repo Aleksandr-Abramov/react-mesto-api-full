@@ -33,7 +33,7 @@ routerUsers.patch("/users/me", auth, celebrate({
   }),
 }), changeUser);
 
-routerUsers.post("/sign-up", celebrate({
+routerUsers.post("/signup", celebrate({
   body: Joi.object().keys({
     name: Joi.string().max(30).min(2),
     about: Joi.string().max(30).min(2),
@@ -48,7 +48,7 @@ routerUsers.post("/sign-up", celebrate({
     password: Joi.string().required(),
   }),
 }), createUser);
-routerUsers.post("/sign-in", celebrate({
+routerUsers.post("/signin", celebrate({
   body: Joi.object().keys({
     email: Joi
       .string()

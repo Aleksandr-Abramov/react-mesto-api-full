@@ -183,7 +183,7 @@ function App() {
       );
   }
   /**
-   * регистрирует нового пользователя, редирект sign-in.
+   * регистрирует нового пользователя, редирект signin.
    * показывает сообщение успех/неудача.
    */
   function handleCreateUser(registerUserData) {
@@ -192,7 +192,7 @@ function App() {
       .then((res) => {
         setToltipMessage(true);
         handleToltipPopupOpen();
-        history.push("sign-in");
+        history.push("signin");
       })
       .catch((err) => {
         setToltipMessage(false);
@@ -226,7 +226,7 @@ function App() {
       setLoggedIn(false);
       setEmailTex("");
     });
-    history.push("/sign-in");
+    history.push("/signin");
   }
 
   return (
@@ -236,7 +236,7 @@ function App() {
           <CurrentUserContext.Provider value={currentUser}>
             <Header emailText={emainText}>
               <Link
-                to="/sign-in"
+                to="/signin"
                 className="registration__link-header"
                 onClick={exitSite}
               >
@@ -281,17 +281,17 @@ function App() {
             <ImagePopup card={selectedCard} onClose={closeAllPopups} />
           </CurrentUserContext.Provider>
         </Route>
-        <Route exact path="/sign-up">
-          <Header pathLink="sign-in" textLink="Войти">
-            <Link to="/sign-in" className="registration__link-header">
+        <Route exact path="/signup">
+          <Header pathLink="signin" textLink="Войти">
+            <Link to="/signin" className="registration__link-header">
               Войти
             </Link>
           </Header>
           <Register createUser={handleCreateUser} />
         </Route>
-        <Route exact path="/sign-in">
+        <Route exact path="/signin">
           <Header>
-            <Link to="/sign-up" className="registration__link-header">
+            <Link to="/signup" className="registration__link-header">
               Регистрация
             </Link>
           </Header>

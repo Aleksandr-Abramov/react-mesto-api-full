@@ -27,7 +27,7 @@ function App() {
   const [cards, setCards] = useState([]);
   const [avatarLink, setAvatarLink] = useState("");
 
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(Boolean(window.localStorage.getItem("loggedIn")));
   const [emainText, setEmailTex] = useState("");
   const [toltipMessage, setToltipMessage] = useState(true);
   const history = useHistory();
@@ -40,7 +40,7 @@ function App() {
    */
 
   React.useEffect(() => {
-    if (!loggedIn) {
+    if(!loggedIn) {
       return;
     }
     api
@@ -50,7 +50,6 @@ function App() {
           setLoggedIn(true);
           setEmailTex(res.email);
           setCurrentUser(res);
-          history.push("/");
         }
       })
       .catch((err) => {
@@ -209,6 +208,7 @@ function App() {
       .autorizationUser(registerData)
       .then((res) => {
         setLoggedIn(true);
+        window.localStorage.setItem("loggedIn", true);
         history.push("/");
       })
       .catch((err) => {
@@ -225,8 +225,9 @@ function App() {
     api.deleteCookie().then((res) => {
       setLoggedIn(false);
       setEmailTex("");
+      window.localStorage.setItem("loggedIn", false);
+      history.push("/signin");
     });
-    history.push("/signin");
   }
 
   return (

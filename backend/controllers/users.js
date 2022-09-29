@@ -99,7 +99,7 @@ const login = async (req, res, next) => {
       httpOnly: true,
       someSite: true,
     });
-    res.send({ message: "Успешный вход" }).end();
+    res.status(200).send({ message: "Успешный вход" }).end();
   } catch (err) {
     next(new Server500Err("произошла ошибка на сервере"));
   }
@@ -156,7 +156,7 @@ const infoUser = async (req, res, next) => {
     if (!user) {
       return next(new Not404Found(`Пользователь по указанному _id ${_id} не найден.`));
     }
-    return res.send(user);
+    return res.status(200).send(user);
   } catch (err) {
     return next(new Server500Err("произошла ошибка на сервере"));
   }

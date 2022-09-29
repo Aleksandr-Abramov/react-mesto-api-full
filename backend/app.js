@@ -13,16 +13,16 @@ const { requestLogger, errorLogger } = require("./middlewares/logger");
 const Not404Found = require("./utils/errors/Not404Found");
 
 const app = express();
-const { PORT = 8000 } = process.env;
+const { PORT = 3000 } = process.env;
 
 app.use(cors({
   credentials: true,
   origin: [
-    "http://localhost:3000",
-    "http://localhost:3000/sigin-up",
-    "http://localhost:3000/sign-in",
-    "http://localhost:3000/users/me",
-    "http://localhost:3000/cards",
+    "http://localhost:3001",
+    // "http://localhost:3000/sigin-up",
+    // "http://localhost:3000/sign-in",
+    // "http://localhost:3000/users/me",
+    // "http://localhost:3000/cards",
   ],
 }));
 app.use(express.json());

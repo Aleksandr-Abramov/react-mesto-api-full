@@ -1,6 +1,6 @@
+const { SECRET_ENV, NODE_ENV } = process.env;
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
 const User = require("../models/user");
 const Bad400Request = require("../utils/errors/Bad400Request");
 const Http409Conflicting = require("../utils/errors/Http409Conflicting");
@@ -91,7 +91,7 @@ const login = async (req, res, next) => {
     }
     const token = jwt.sign(
       { _id: user._id },
-      "SECRET",
+      NODE_ENV !== "production" ? SECRET_ENV : "SECRET",
       { expiresIn: "7d" },
     );
     res.cookie("token", token, {

@@ -1,6 +1,6 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-// const bodyParser = require("body-parser");
 const cors = require("cors");
 const { errors } = require("celebrate");
 const cookieParser = require("cookie-parser");
@@ -20,6 +20,7 @@ app.use(cors({
   origin: [
     "http://localhost:3000",
     "http://localhost:3000/sigin-up",
+    "http://localhost:3000/sign-in",
     "http://localhost:3000/users/me",
     "http://localhost:3000/cards",
   ],

@@ -97,7 +97,7 @@ const login = async (req, res, next) => {
     res.cookie("token", token, {
       maxAge: 3600000,
       httpOnly: true,
-      someSite: true,
+      someSite: "secure",
     });
     res.status(200).send({ message: "Успешный вход" }).end();
   } catch (err) {

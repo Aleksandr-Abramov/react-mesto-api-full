@@ -26,8 +26,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({ name: "", about: "" });
   const [cards, setCards] = useState([]);
   const [avatarLink, setAvatarLink] = useState("");
-
-  const [loggedIn, setLoggedIn] = useState(Boolean(window.localStorage.getItem("loggedIn")));
+  const [loggedIn, setLoggedIn] = useState(JSON.parse(localStorage.getItem("loggedIn")));
   const [emainText, setEmailTex] = useState("");
   const [toltipMessage, setToltipMessage] = useState(true);
   const history = useHistory();

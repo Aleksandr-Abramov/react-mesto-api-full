@@ -91,7 +91,7 @@ const login = async (req, res, next) => {
     }
     const token = jwt.sign(
       { _id: user._id },
-      NODE_ENV !== "production" ? SECRET_ENV : "SECRET",
+      NODE_ENV === "production" ? SECRET_ENV : "SECRET",
       { expiresIn: "7d" },
     );
     res.cookie("token", token, {

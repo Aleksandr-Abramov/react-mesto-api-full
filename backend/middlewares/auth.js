@@ -9,7 +9,7 @@ const auth = (req, res, next) => {
   }
   let payload;
   try {
-    payload = jwt.verify(token, NODE_ENV !== "production" ? SECRET_ENV : "SECRET");
+    payload = jwt.verify(token, NODE_ENV === "production" ? SECRET_ENV : "SECRET");
   } catch (err) {
     return next(new Unauthorized401("Необходима авторизация"));
   }

@@ -6,6 +6,6 @@
 Адрес репозитория: https://github.com/Aleksandr-Abramov/react-mesto-api-full
 
 # Ссылки на проект
-IP: 51.250.79.26 
+IP 51.250.79.26 
 Frontend https://mesto-alex.nomoredomains.icu
 Backend  https://api.mesto-alex.nomoredomains.icu

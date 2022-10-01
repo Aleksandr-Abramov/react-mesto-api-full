@@ -30,8 +30,15 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(requestLogger);
 
-app.use("/", routerUsers);
 app.use("/", routerCards);
+
+app.get("/crash-test", () => {
+  setTimeout(() => {
+    throw new Error("Сервер сейчас упадёт");
+  }, 0);
+});
+
+app.use("/", routerUsers);
 app.use("/*", auth, (req, res, next) => {
   next(new Not404Found("ошибка 404, страницы не существует"));
 });

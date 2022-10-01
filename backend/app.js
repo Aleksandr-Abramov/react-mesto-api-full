@@ -19,10 +19,8 @@ app.use(cors({
   credentials: true,
   origin: [
     "http://localhost:3001",
-    // "http://localhost:3000/sigin-up",
-    // "http://localhost:3000/sign-in",
-    // "http://localhost:3000/users/me",
-    // "http://localhost:3000/cards",
+    "http://mesto-alex.nomoredomains.icu",
+    "http://api.mesto-alex.nomoredomains.icu",
   ],
 }));
 app.use(express.json());

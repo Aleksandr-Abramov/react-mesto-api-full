@@ -18,9 +18,12 @@ const { PORT = 3000 } = process.env;
 app.use(cors({
   credentials: true,
   origin: [
-    "http://localhost:3001",
+    "http://localhost:3000",
     "http://mesto-alex.nomoredomains.icu",
     "http://api.mesto-alex.nomoredomains.icu",
+    "https://mesto-alex.nomoredomains.icu",
+    "https://api.mesto-alex.nomoredomains.icu",
+    "https://mesto-alex.nomoredomains.icu",
   ],
 }));
 app.use(express.json());
@@ -38,7 +41,7 @@ app.use(errors());
 app.use(errorHendler);
 
 async function main() {
-  await mongoose.connect("mongodb://localhost:27017/mestodb", {});
+  await mongoose.connect("mongodb://127.0.0.1:27017/mestodb", {});
   await app.listen(PORT);
   console.log(`Example app listening on port ${PORT}!`);
 }

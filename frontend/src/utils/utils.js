@@ -3,13 +3,12 @@
 //   url: "https://nomoreparties.co/v1/cohort-43",
 // };
 
-// const apiTokenUser = {
-//   url: "https://auth.nomoreparties.co"
+// const apiUrls = {
+  // url: "http://mesto-alex.nomoredomains.icu",
 // }
 
 const apiUrls = {
-
-  url: "http://localhost:3000",
+  url: "https://api.mesto-alex.nomoredomains.icu",
 };
 
 export { apiUrls };

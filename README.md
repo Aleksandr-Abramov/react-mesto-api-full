@@ -9,3 +9,5 @@
 IP 51.250.79.26 
 Frontend https://mesto-alex.nomoredomains.icu
 Backend  https://api.mesto-alex.nomoredomains.icu
+
+ Для ревьюера. Здравствуйте, что бы зайти на сервер, воспользуйтесь командой alex@51.250.79.26

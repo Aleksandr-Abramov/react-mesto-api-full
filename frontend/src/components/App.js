@@ -27,6 +27,7 @@ function App() {
   const [cards, setCards] = useState([]);
   const [avatarLink, setAvatarLink] = useState("");
   const [loggedIn, setLoggedIn] = useState(JSON.parse(localStorage.getItem("loggedIn")));
+  
   const [emainText, setEmailTex] = useState("");
   const [toltipMessage, setToltipMessage] = useState(true);
   const history = useHistory();
@@ -37,8 +38,14 @@ function App() {
   /**
    * Получает информацию о пользователе при загрузки, заполняет карточки
    */
+  React.useEffect(() => {
+    if (!loggedIn) {
+      history.push("signin");
+    }
+  }, [])
 
   React.useEffect(() => {
+    
     if(!loggedIn) {
       return;
     }
@@ -53,6 +60,7 @@ function App() {
       })
       .catch((err) => {
         if (err) {
+          
           console.log(err);
         }
       });
@@ -65,6 +73,7 @@ function App() {
       })
       .catch((err) => {
         if (err) {
+          
           console.log(err);
         }
       });

@@ -65,6 +65,7 @@ const setLike = async (req, res, next) => {
       next(new Not404Found(`Передан несуществующий _id ${cardId} карточки.`));
       return;
     }
+
     res.send(addLike);
   } catch (err) {
     if (err.kind === "ObjectId") {

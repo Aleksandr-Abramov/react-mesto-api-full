@@ -1,9 +1,10 @@
 import React from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import trashIcon from "../images/svg/Trash.svg";
-
+import { useState } from "react";
 
 function Card({ card, onCardClick, onCardLike, onCardDelete }) {
+  const [textLike, setTextLike] = useState(card.likes.length);
   const userData = React.useContext(CurrentUserContext);
   const isOwn = card.owner === userData._id;
   const cardDeleteButtonClassName = `gallery__trash ${
@@ -16,6 +17,14 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
 
   function handleLikeClick() {
     onCardLike(card, isLiked);
+    handleLikeClickChange();
+  }
+  function handleLikeClickChange() {
+    if (!isLiked) {
+      setTextLike(card.likes.length+1)
+    } else {
+      setTextLike(card.likes.length-1)
+    }
   }
 
   function handleDeleteClick() {
@@ -50,7 +59,7 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
             aria-label="поставить лайк"
             onClick={handleLikeClick}
           ></button>
-          <span className="gallery__like-text"></span>
+          <span className="gallery__like-text">{textLike}</span>
         </div>
       </div>
     </div>

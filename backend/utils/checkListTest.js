@@ -1,5 +1,5 @@
-const YOUR_JWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzM4NGU2YmY5NzIzOGE3NmI3YmU4YTciLCJpYXQiOjE2NjQ2MzYzNTgsImV4cCI6MTY2NTI0MTE1OH0.FzlOuVzZyiUP9QrgePHFfneTy9a7Ect1HxB_L14E6_M"; // вставьте сюда JWT, который вернул публичный сервер
-// const { SECRET_ENV } = process.env;
+const YOUR_JWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzM4NGU2YmY5NzIzOGE3NmI3YmU4YTciLCJpYXQiOjE2NjQ2Mzk4NTcsImV4cCI6MTY2NTI0NDY1N30.evM3mJhrJrjv5eUJa-ZXHhagIyhor0pXZFUmYZOFSF0"; // вставьте сюда JWT, который вернул публичный сервер
+
 const SECRET_KEY_DEV = "SECRET"; // вставьте сюда секретный ключ для разработки из кода
 
 const jwt = require("jsonwebtoken");

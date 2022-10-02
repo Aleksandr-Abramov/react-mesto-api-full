@@ -77,9 +77,14 @@ function App() {
     api
       .changeLikeCardStatus(card._id, !like)
       .then((newCard) => {
-        setCards((state) =>
-          state.map((c) => (c._id === card._id ? newCard : c))
-        );
+        // setCards((state) => 
+        //   state.map((c) => (c._id === card._id ? newCard : c))
+        // );
+        setCards((state) => {
+          // console.log(state.map((c) => (c._id === card._id ? newCard : c)));
+          // console.log(state[0].likes);
+          return state.map((c) => (c._id === card._id ? newCard : c))
+        })
       })
       .catch((err) => console.log(`Ошибка при попытки поставить лайк:${err}`));
   }

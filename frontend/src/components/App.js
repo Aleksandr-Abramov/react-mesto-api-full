@@ -26,7 +26,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({ name: "", about: "" });
   const [cards, setCards] = useState([]);
   const [avatarLink, setAvatarLink] = useState("");
-  const [loggedIn, setLoggedIn] = useState(JSON.parse(localStorage.getItem("loggedIn")));
+  const [loggedIn, setLoggedIn] = useState(undefined);
   
   const [emainText, setEmailTex] = useState("");
   const [toltipMessage, setToltipMessage] = useState(true);
@@ -40,6 +40,7 @@ function App() {
    */
   React.useEffect(() => {
     if (!loggedIn) {
+      console.log("sad");
       history.push("signin");
     }
   }, [])
